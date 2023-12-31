@@ -26,19 +26,36 @@ class _LatestState extends State<Latest> {
   int _current = 0;
 
   List<Color> dotColors = [
-    Color.fromRGBO(0, 0, 0, 0.9),
-    Color.fromRGBO(0, 0, 0, 0.4),
+    Colors.deepPurpleAccent,
+    Color(0xeff323755), // Adjusted alpha value
   ];
 
   List<CategoryItem> categoryItems = [
-    CategoryItem(name: "Counter-Strike", icon: "assets/images/dota.png"),
-    CategoryItem(name: "Dota 2", icon: "assets/images/dota.png"),
-    CategoryItem(name: "Mobile Legends", icon: "assets/images/dota.png"),
-    CategoryItem(name: "VALORANT", icon: "assets/images/dota.png"),
-    CategoryItem(name: "PUBG", icon: "assets/images/dota.png"),
-    CategoryItem(name: "League of Legends", icon: "assets/images/dota.png"),
+    CategoryItem(
+      name: "Counter-Strike",
+      icon: "assets/images/dota.png",
+    ),
+    CategoryItem(
+      name: "Dota 2",
+      icon: "assets/images/dota.png",
+    ),
+    CategoryItem(
+      name: "Mobile Legends",
+      icon: "assets/images/dota.png",
+    ),
+    CategoryItem(
+      name: "VALORANT",
+      icon: "assets/images/dota.png",
+    ),
+    CategoryItem(
+      name: "PUBG",
+      icon: "assets/images/dota.png",
+    ),
+    CategoryItem(
+      name: "League of Legends",
+      icon: "assets/images/dota.png",
+    ),
   ];
-  // offer list
 
   List gameList = [
     {
@@ -95,7 +112,7 @@ class _LatestState extends State<Latest> {
         ],
       ),
       body: Container(
-        color: Colors.grey[200],
+        color: Theme.of(context).primaryColor,
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -242,7 +259,7 @@ class NewsCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      height: MediaQuery.of(context).size.height / 8,
+      height: MediaQuery.of(context).size.height / 5.45,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.all(
@@ -262,11 +279,16 @@ class NewsCard extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.black,
+                        ),
                       ),
                       AutoSizeText(
                         desc,
-                        style: TextStyle(),
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       )
@@ -288,14 +310,20 @@ class NewsCard extends StatelessWidget {
             children: [
               Text(
                 "6h",
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
               ),
               horizontalSpace(4),
               Text("|"),
               horizontalSpace(4),
               Text(
                 "esports.com",
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
               )
             ],
           )

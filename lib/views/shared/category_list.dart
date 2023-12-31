@@ -16,7 +16,7 @@ class CategoryList extends StatelessWidget {
       height: 30,
       padding: EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
-        color: isSelected ? Colors.deepPurple : Colors.white,
+        color: isSelected ? Colors.deepPurpleAccent : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isSelected ? Colors.grey : Colors.grey,

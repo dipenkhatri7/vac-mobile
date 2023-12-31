@@ -45,8 +45,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[600],
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         currentIndex: tabController!.index,
@@ -71,8 +71,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             label: 'Stats',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: 'Settings',
+            icon: Icon(Icons.person_outline),
+            label: 'Profile',
           ),
         ],
       ),

@@ -3,7 +3,6 @@ import 'package:vac/constants/consts.dart';
 import 'package:vac/constants/spaces.dart';
 import 'package:vac/views/pages/home/components/live_card.dart';
 
-
 import '../components/game_card.dart';
 
 class TopLive extends StatelessWidget {
@@ -14,47 +13,47 @@ class TopLive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(horizontal: GlobalVariable.width * 0.0585),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.blueGrey.shade100,
-                  child: Icon(
-                    Icons.trending_up,
-                    color: Colors.blueAccent,
-                  )),
-              horizontalSpace(10),
-              const Text(
-                "Top Live",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+              Text(
+                "Trending",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               ),
-              horizontalSpace(5),
-              const CircleAvatar(
-                radius: 6,
-                backgroundColor: Colors.red,
-              )
+              Image(
+                image: AssetImage('assets/images/trending.gif'),
+                height: 16,
+              ),
             ],
           ),
-          verticalSpace(10),
+          verticalSpace(15),
           LiveCard(
+            gameName: "Clash of Clans",
             img: "dota2.png",
-            name: "Dota 2",
+            userName: "Killer Dipen",
+            userProfile: "Ellipse 2.png",
+            watchCount: "1.2M",
           ),
-          verticalSpace(10),
+          verticalSpace(15),
           LiveCard(
-            img: "valorant.webp",
-            name: "Valorant",
+            gameName: "Clash of Clans",
+            img: "dota2.png",
+            userName: "Dipen",
+            userProfile: "Ellipse 2.png",
+            watchCount: "1.3K",
           ),
-          verticalSpace(10),
+          verticalSpace(15),
           LiveCard(
-            img: "csgo.webp",
-            name: "CS:GO ",
-          )
+            gameName: "Clash of Clans",
+            img: "dota2.png",
+            userName: "Dipen",
+            userProfile: "Ellipse 2.png",
+            watchCount: "4.2K",
+          ),
         ],
       ),
     );

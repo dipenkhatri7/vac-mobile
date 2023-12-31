@@ -8,8 +8,16 @@ import 'package:vac/views/pages/home/components/score_card.dart';
 import 'package:video_player/video_player.dart';
 
 class MatchCard extends StatefulWidget {
-  MatchCard({super.key, required this.league});
-  String league;
+  String img, gameName, userName, watchCount, userProfile;
+  MatchCard({
+    super.key,
+    required this.img,
+    required this.gameName,
+    required this.userName,
+    required this.watchCount,
+    required this.userProfile,
+  });
+
   @override
   State<MatchCard> createState() => _MatchCardState();
 }
@@ -57,189 +65,209 @@ class _MatchCardState extends State<MatchCard> {
     return InkWell(
       onTap: () {
         showModalBottomSheet(
-            constraints: BoxConstraints(maxHeight: 500),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             context: context,
             builder: (context) {
-              return DraggableScrollableSheet(
-                  initialChildSize: 1,
-                  builder: (_, scrollController) {
-                    return Container(
-                      padding: EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          verticalSpace(15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Text(
-                                  "LIVE",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.red),
-                                ),
-                              ),
-                              horizontalSpace(10),
-                              CircleAvatar(
-                                radius: 10,
-                                backgroundColor: Colors.red,
-                              )
-                            ],
-                          ),
-                          verticalSpace(20),
-                          ScoreCard(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Row(
-                                  children: [
-                                    Text("EN"),
-                                    horizontalSpace(5),
-                                    Image.asset("assets/images/usa.webp",
-                                        width: 20),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          FutureBuilder(
-                            future: _initializeVideoPlayerFuture,
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.done) {
-                                // If the VideoPlayerController has finished initialization, use
-                                // the data it provides to limit the aspect ratio of the video.
-                                return Container(
-                                    width: 300,
-                                    height: 150,
-                                    child: VideoPlayer(_controller));
-                              } else {
-                                // If the VideoPlayerController is still initializing, show a
-                                // loading spinner.
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            },
-                          ),
-                          IconButton(
-                            onPressed: () async {
-                              // Wrap the play or pause in a call to `setState`. This ensures the
-                              // correct icon is shown.
-                              setState(() async {
-                                // If the video is playing, pause it.
-                                if (_controller.value.isPlaying) {
-                                  _controller.pause();
-                                } else {
-                                  // If the video is paused, play it.
-                                  _controller.play();
-                                }
-                                if (isPlayed) {
-                                  player.resume();
-                                } else {
-                                  await playLocalAsset();
-                                }
-                              });
-                            },
-                            // Display the correct icon depending on the state of the player.
-                            icon: Icon(
-                              _controller.value.isPlaying
-                                  ? Icons.pause
-                                  : Icons.play_arrow,
-                            ),
-                          ),
-                          verticalSpace(20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                  onPressed: () async {
-                                    player.seek(Duration(seconds: -10));
-                                  },
-                                  icon: Icon(Icons.skip_previous_rounded)),
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.black,
-                                child: IconButton(
-                                    onPressed: () async {
-                                      player.pause();
-                                      _controller.pause();
-                                    },
-                                    icon: Icon(
-                                      Icons.pause,
-                                      color: Colors.white,
-                                    )),
-                              ),
-                              IconButton(
-                                  onPressed: () async {
-                                    player.seek(Duration(seconds: 10));
-                                  },
-                                  icon: Icon(Icons.skip_next))
-                            ],
-                          )
-                        ],
-                      ),
-                    );
-                  });
+              return Container();
             });
+        // constraints: BoxConstraints(maxHeight: 500),
+        // shape:
+        //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        // context: context,
+        // builder: (context) {
+        //   return DraggableScrollableSheet(
+        //       initialChildSize: 1,
+        //       builder: (_, scrollController) {
+        //         return Container(
+        //           padding: EdgeInsets.all(20),
+        //           child: Column(
+        //             children: [
+        //               verticalSpace(15),
+        //               Row(
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   Center(
+        //                     child: Text(
+        //                       "LIVE",
+        //                       style: TextStyle(
+        //                           fontSize: 18,
+        //                           fontWeight: FontWeight.w600,
+        //                           color: Colors.red),
+        //                     ),
+        //                   ),
+        //                   horizontalSpace(10),
+        //                   CircleAvatar(
+        //                     radius: 10,
+        //                     backgroundColor: Colors.red,
+        //                   )
+        //                 ],
+        //               ),
+        //               verticalSpace(20),
+        //               ScoreCard(),
+        //               Row(
+        //                 mainAxisAlignment: MainAxisAlignment.end,
+        //                 children: [
+        //                   Container(
+        //                     padding: EdgeInsets.all(5),
+        //                     decoration: BoxDecoration(
+        //                         border: Border.all(color: Colors.black),
+        //                         borderRadius: BorderRadius.circular(8)),
+        //                     child: Row(
+        //                       children: [
+        //                         Text("EN"),
+        //                         horizontalSpace(5),
+        //                         Image.asset("assets/images/usa.webp",
+        //                             width: 20),
+        //                       ],
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //               FutureBuilder(
+        //                 future: _initializeVideoPlayerFuture,
+        //                 builder: (context, snapshot) {
+        //                   if (snapshot.connectionState ==
+        //                       ConnectionState.done) {
+        //                     // If the VideoPlayerController has finished initialization, use
+        //                     // the data it provides to limit the aspect ratio of the video.
+        //                     return Container(
+        //                         width: 300,
+        //                         height: 150,
+        //                         child: VideoPlayer(_controller));
+        //                   } else {
+        //                     // If the VideoPlayerController is still initializing, show a
+        //                     // loading spinner.
+        //                     return const Center(
+        //                       child: CircularProgressIndicator(),
+        //                     );
+        //                   }
+        //                 },
+        //               ),
+        //               IconButton(
+        //                 onPressed: () async {
+        //                   // Wrap the play or pause in a call to `setState`. This ensures the
+        //                   // correct icon is shown.
+        //                   setState(() async {
+        //                     // If the video is playing, pause it.
+        //                     if (_controller.value.isPlaying) {
+        //                       _controller.pause();
+        //                     } else {
+        //                       // If the video is paused, play it.
+        //                       _controller.play();
+        //                     }
+        //                     if (isPlayed) {
+        //                       player.resume();
+        //                     } else {
+        //                       await playLocalAsset();
+        //                     }
+        //                   });
+        //                 },
+        //                 // Display the correct icon depending on the state of the player.
+        //                 icon: Icon(
+        //                   _controller.value.isPlaying
+        //                       ? Icons.pause
+        //                       : Icons.play_arrow,
+        //                 ),
+        //               ),
+        //               verticalSpace(20),
+        //               Row(
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   IconButton(
+        //                       onPressed: () async {
+        //                         player.seek(Duration(seconds: -10));
+        //                       },
+        //                       icon: Icon(Icons.skip_previous_rounded)),
+        //                   CircleAvatar(
+        //                     radius: 30,
+        //                     backgroundColor: Colors.black,
+        //                     child: IconButton(
+        //                         onPressed: () async {
+        //                           player.pause();
+        //                           _controller.pause();
+        //                         },
+        //                         icon: Icon(
+        //                           Icons.pause,
+        //                           color: Colors.white,
+        //                         )),
+        //                   ),
+        //                   IconButton(
+        //                       onPressed: () async {
+        //                         player.seek(Duration(seconds: 10));
+        //                       },
+        //                       icon: Icon(Icons.skip_next))
+        //                 ],
+        //               )
+        //             ],
+        //           ),
+        //         );
+        //       });
+        // }
       },
       child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        width: double.infinity,
+        // decoration: BoxDecoration(
+        //   color: Colors.white,
+        //   borderRadius: BorderRadius.circular(20),
+        // ),
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  widget.league,
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.blueGrey.shade600),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image(
+                image: AssetImage(
+                  'assets/images/' + widget.img,
                 ),
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.blueGrey.shade100,
-                      radius: 13,
-                      child: Icon(
-                        Icons.play_arrow,
-                        size: 19,
-                        color: Colors.blueAccent.shade400,
-                      ),
-                    ),
-                    horizontalSpace(15),
-                    CircleAvatar(
-                      backgroundColor: Colors.blueGrey.shade100,
-                      radius: 13,
-                      child: Icon(
-                        Icons.star_border_outlined,
-                        size: 19,
-                        color: Colors.blueAccent.shade400,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
-            verticalSpace(20),
-            ScoreCard(),
-            verticalSpace(20),
-            Text("Best Of 3 Series"),
-            verticalSpace(6),
           ],
         ),
+        // child: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        // children: [
+        //   Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       Text(
+        //         widget.gameName,
+        //         style: TextStyle(
+        //             fontSize: 16,
+        //             fontWeight: FontWeight.w500,
+        //             color: Colors.blueGrey.shade600),
+        //       ),
+        //       Row(
+        //         children: [
+        //           CircleAvatar(
+        //             backgroundColor: Colors.blueGrey.shade100,
+        //             radius: 13,
+        //             child: Icon(
+        //               Icons.play_arrow,
+        //               size: 19,
+        //               color: Colors.blueAccent.shade400,
+        //             ),
+        //           ),
+        //           horizontalSpace(15),
+        //           CircleAvatar(
+        //             backgroundColor: Colors.blueGrey.shade100,
+        //             radius: 13,
+        //             child: Icon(
+        //               Icons.star_border_outlined,
+        //               size: 19,
+        //               color: Colors.blueAccent.shade400,
+        //             ),
+        //           ),
+        //         ],
+        //       )
+        //     ],
+        //   ),
+        //   verticalSpace(20),
+        //   ScoreCard(),
+        //   verticalSpace(20),
+        //   Text("Best Of 3 Series"),
+        //   verticalSpace(6),
+        // ],
+        // ),
       ),
     );
   }

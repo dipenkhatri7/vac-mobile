@@ -19,14 +19,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Container(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [TopGames(), verticalSpace(10), TopLive()],
+      backgroundColor: Theme.of(context).primaryColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              TopGames(),
+              verticalSpace(24),
+              TopLive(),
+              verticalSpace(16)
+            ],
+          ),
         ),
       ),
-    )));
+    );
   }
 }

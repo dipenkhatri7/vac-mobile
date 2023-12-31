@@ -12,37 +12,80 @@ class TopGames extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(horizontal: GlobalVariable.width * 0.0585),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.blueGrey.shade100,
-                    child: Container(
-                        padding: EdgeInsets.all(8),
-                        child: Image.asset(
-                          "assets/images/icons/joyPad.png",
-                          color: Colors.blue,
-                        )),
+                  const IntrinsicHeight(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Vāc",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: VerticalDivider(
+                            color: Colors.grey,
+                            thickness: 1,
+                            width: 20,
+                          ),
+                        ),
+                        Text(
+                          "वाच",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  horizontalSpace(10),
-                  Text(
-                    "Top Games",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                  ),
+                  Container(
+                    padding: const EdgeInsets.all(12.45),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xeff323755), width: 1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const CircleAvatar(
+                          radius: 2.45,
+                          backgroundColor: Colors.red,
+                        ),
+                        Image(
+                          image: AssetImage("assets/images/Notification.png"),
+                          color: Colors.white,
+                          height: 24,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
-              InkWell(onTap: () {}, child: Text("All  "))
+              const Text(
+                "Esports like never before",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color.fromRGBO(251, 251, 255, 0.75),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              verticalSpace(10),
             ],
           ),
-          verticalSpace(10),
-          Container(
+          verticalSpace(15),
+          SizedBox(
             width: GlobalVariable.width - 20,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,

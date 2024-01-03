@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Urbanist',
           primaryColor: const Color(0xFF191A32),
-          secondaryHeaderColor: const Color(0xFF009f67),
+          secondaryHeaderColor: const Color(0xFF171722),
           disabledColor: const Color(0xffa2a7ad),
           iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: Color(0xFF343636),

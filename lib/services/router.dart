@@ -21,7 +21,7 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       );
     case '/home':
       return MaterialPageRoute(
-        builder: (context) => const HomePage(),
+        builder: (context) => const Home(),
       );
     case '/commentary':
       return MaterialPageRoute(builder: (context) => const Commentary());

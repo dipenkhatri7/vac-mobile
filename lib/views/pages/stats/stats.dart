@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:vac/views/shared/list_tiles.dart';
 import 'package:vac/views/shared/stats_box.dart';
@@ -89,6 +91,7 @@ class _StatsState extends State<Stats> {
               ),
             ),
             Container(
+              color: Theme.of(context).secondaryHeaderColor,
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

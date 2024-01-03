@@ -14,17 +14,23 @@ class ListTiles extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: const BorderRadius.all(
           Radius.circular(4),
         ),
       ),
-      child: ListTile(
-        trailing: Icon(icon),
-        title: Text(
-          title,
-        ),
-        onTap: () {},
+      child: Column(
+        children: [
+          ListTile(
+            trailing: Icon(icon),
+            title: Text(
+              title,
+            ),
+            onTap: () {},
+          ),
+          const Divider(
+            color: Colors.white,
+          ),
+        ],
       ),
     );
   }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vac/providers/userProvider.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -77,16 +80,18 @@ class _SettingsState extends State<Settings> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'My Name',
+                            Provider.of<UserProvider>(context).user.name,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
+                              color: Colors.white,
                             ),
                           ),
                           Text(
-                            '@Username123',
+                            Provider.of<UserProvider>(context).user.email,
                             style: TextStyle(
                               fontSize: 14,
+                              color: Colors.white,
                             ),
                           ),
                         ],
@@ -400,32 +405,40 @@ class _SettingsState extends State<Settings> {
                 const SizedBox(
                   height: 15,
                 ),
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(14),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).secondaryHeaderColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Logout",
-                          style: TextStyle(
-                            letterSpacing: 0.5,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                InkWell(
+                  onTap: () {
+                    // SharedPreferences prefs =
+                    //     await SharedPreferences.getInstance();
+                    // await prefs.clear();
+                    Navigator.pushReplacementNamed(context, '/login');
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Logout",
+                            style: TextStyle(
+                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Icon(
+                            Icons.logout_outlined,
+                            size: 24,
                             color: Colors.white,
                           ),
-                        ),
-                        Icon(
-                          Icons.logout_outlined,
-                          size: 24,
-                          color: Colors.white,
-                        ),
-                      ]),
+                        ]),
+                  ),
                 ),
               ],
             ),

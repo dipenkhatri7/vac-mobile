@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vac/constants/consts.dart';
 import 'package:vac/constants/spaces.dart';
+import 'package:vac/services/authServices.dart';
 import 'package:vac/views/pages/auth/signup.dart';
 import 'package:vac/views/pages/auth/widget/custom_text_field.dart';
 import 'package:vac/views/pages/auth/widget/custom_text_field_container.dart';
@@ -16,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailTEC = TextEditingController();
   TextEditingController passwordTEC = TextEditingController();
+  AuthServices authServices = AuthServices();
   bool isRememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -93,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: "Enter your password",
                       inputAction: TextInputAction.next,
                       inputType: TextInputType.emailAddress,
-                      isPassword: false,
+                      isPassword: true,
                     ),
                   ),
                   Row(
@@ -145,10 +147,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (context) => Home()),
-                            (route) => false);
+                        authServices.signInUser(
+                            context: context,
+                            email: emailTEC.text,
+                            password: passwordTEC.text);
+                        // Navigator.pushAndRemoveUntil(
+                        //     context,
+                        //     MaterialPageRoute(builder: (context) => Home()),
+                        //     (route) => false);
                       },
                       child: Text(
                         "Login",

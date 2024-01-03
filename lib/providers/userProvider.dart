@@ -12,9 +12,9 @@ class UserProvider extends ChangeNotifier {
     token: '',
   );
   User get user => _user;
-  void setUser(String user) {
-    debugPrint("JERe");
-    _user = User.fromJson(user);
+  void setUser(Map<String, dynamic> user) {
+    debugPrint("Inside setUser from userProvider");
+    _user = User.fromMap(user);
     notifyListeners();
   }
 

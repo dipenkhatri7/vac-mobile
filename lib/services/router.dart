@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vac/views/commentary.dart';
+import 'package:vac/views/pages/auth/login.dart';
+import 'package:vac/views/pages/auth/signup.dart';
 import 'package:vac/views/pages/home.dart';
 import 'package:vac/views/pages/home/home_page.dart';
 import 'package:vac/views/pages/settings/settings.dart';
@@ -14,6 +16,14 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case '/stats':
       return MaterialPageRoute(
         builder: (context) => const Stats(),
+      );
+    case '/login':
+      return MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      );
+    case '/signup':
+      return MaterialPageRoute(
+        builder: (context) => const SignupScreen(),
       );
     case '/settings':
       return MaterialPageRoute(

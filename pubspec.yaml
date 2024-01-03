@@ -45,6 +45,8 @@ dependencies:
   web_socket_channel: ^2.4.0
   flutter_list_view: ^1.1.22
   get_it: ^7.6.4
+  provider: ^6.1.1
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:vac/providers/userProvider.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -19,8 +22,7 @@ class _SettingsState extends State<Settings> {
                 Container(
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).secondaryHeaderColor.withOpacity(0.5),
+                    color: Theme.of(context).secondaryHeaderColor,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
@@ -78,16 +80,18 @@ class _SettingsState extends State<Settings> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'My Name',
+                            Provider.of<UserProvider>(context).user.name,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
+                              color: Colors.white,
                             ),
                           ),
                           Text(
-                            '@Username123',
+                            Provider.of<UserProvider>(context).user.email,
                             style: TextStyle(
                               fontSize: 14,
+                              color: Colors.white,
                             ),
                           ),
                         ],
@@ -163,7 +167,7 @@ class _SettingsState extends State<Settings> {
                 Container(
                   margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).secondaryHeaderColor,
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
@@ -174,7 +178,7 @@ class _SettingsState extends State<Settings> {
                       ),
                     ],
                     border: Border.all(
-                      color: Colors.black,
+                      color: Colors.white,
                       width: 1,
                     ),
                   ),
@@ -184,6 +188,7 @@ class _SettingsState extends State<Settings> {
                       trailing: Icon(
                         Icons.arrow_forward_ios,
                         size: 20,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -213,9 +218,7 @@ class _SettingsState extends State<Settings> {
                 Container(
                     height: MediaQuery.of(context).size.height / 10,
                     decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .secondaryHeaderColor
-                          .withOpacity(0.5),
+                      color: Theme.of(context).secondaryHeaderColor,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.5),
@@ -262,8 +265,7 @@ class _SettingsState extends State<Settings> {
                 Container(
                   height: MediaQuery.of(context).size.height / 13,
                   decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).secondaryHeaderColor.withOpacity(0.5),
+                    color: Theme.of(context).secondaryHeaderColor,
                     border: Border(
                       top: BorderSide(
                         color: Colors.black,
@@ -297,6 +299,7 @@ class _SettingsState extends State<Settings> {
                       Image(
                         image: AssetImage("assets/images/pubg.png"),
                         height: 60,
+                        color: Colors.white,
                       ),
                       SizedBox(
                         width: 18,
@@ -380,8 +383,7 @@ class _SettingsState extends State<Settings> {
                         width: 1,
                       ),
                     ),
-                    color:
-                        Theme.of(context).secondaryHeaderColor.withOpacity(0.5),
+                    color: Theme.of(context).secondaryHeaderColor,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
@@ -402,6 +404,42 @@ class _SettingsState extends State<Settings> {
                 ),
                 const SizedBox(
                   height: 15,
+                ),
+                InkWell(
+                  onTap: () {
+                    // SharedPreferences prefs =
+                    //     await SharedPreferences.getInstance();
+                    // await prefs.clear();
+                    // Navigator.pushReplacementNamed(context, '/login');
+                    context.go('/login');
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Logout",
+                            style: TextStyle(
+                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Icon(
+                            Icons.logout_outlined,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                        ]),
+                  ),
                 ),
               ],
             ),

@@ -10,7 +10,7 @@ import 'package:vac/views/pages/splash/splashScreen.dart';
 import 'package:vac/views/pages/stats/stats.dart';
 
 class CustomRouter {
-  static final goRouter = GoRouter(initialLocation: '/streamPage', routes: [
+  static final goRouter = GoRouter(initialLocation: '/splash', routes: [
     // GoRoute(
     //     path: '/',
     //     builder: (_, __) {

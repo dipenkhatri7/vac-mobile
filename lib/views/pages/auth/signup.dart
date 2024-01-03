@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:vac/constants/consts.dart';
 import 'package:vac/constants/spaces.dart';
+import 'package:vac/services/authServices.dart';
 import 'package:vac/views/pages/auth/widget/custom_text_field.dart';
 import 'package:vac/views/pages/auth/widget/custom_text_field_container.dart';
 import 'package:vac/views/pages/home.dart';
@@ -16,6 +16,9 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailTEC = TextEditingController();
   TextEditingController passwordTEC = TextEditingController();
+  TextEditingController nameTEC = TextEditingController();
+  AuthServices authServices = AuthServices();
+
   bool isRememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Spacer(),
             Container(
               width: double.infinity,
-              height: GlobalVariable.height * 0.4,
+              height: GlobalVariable.height * 0.3,
               child: Image(
                 image: AssetImage('assets/images/signupimg.png'),
                 fit: BoxFit.cover,
@@ -78,6 +81,17 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Column(
                 children: [
                   CustomTextFieldContainer(
+                    text: "Name",
+                    textField: CustomTextField(
+                      controller: nameTEC,
+                      hintText: "Enter your name",
+                      inputAction: TextInputAction.next,
+                      inputType: TextInputType.emailAddress,
+                      isPassword: false,
+                    ),
+                  ),
+                  verticalSpace(5),
+                  CustomTextFieldContainer(
                     text: "Email",
                     textField: CustomTextField(
                       controller: emailTEC,
@@ -87,8 +101,18 @@ class _SignupScreenState extends State<SignupScreen> {
                       isPassword: false,
                     ),
                   ),
+                  verticalSpace(5),
+                  CustomTextFieldContainer(
+                    text: "Create Password",
+                    textField: CustomTextField(
+                      controller: passwordTEC,
+                      hintText: "Enter your password",
+                      inputAction: TextInputAction.next,
+                      inputType: TextInputType.emailAddress,
+                      isPassword: false,
+                    ),
+                  ),
                   verticalSpace(20),
-                  // verticalSpace(20),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -102,10 +126,15 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (context) => Home()),
-                            (route) => false);
+                        if (emailTEC.text.isNotEmpty &&
+                            passwordTEC.text.isNotEmpty &&
+                            nameTEC.text.isNotEmpty) {
+                          authServices.singnUpUser(
+                              context: context,
+                              email: emailTEC.text,
+                              password: passwordTEC.text,
+                              name: nameTEC.text);
+                        }
                       },
                       child: Text(
                         "Signup",
@@ -129,7 +158,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextButton(
                         onPressed: () {
-                          context.go('/login');
+                          Navigator.pop(context);
                         },
                         child: Text(
                           "Login",

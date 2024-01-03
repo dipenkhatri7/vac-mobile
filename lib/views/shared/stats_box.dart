@@ -17,7 +17,7 @@ class StatsBox extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 2.4,
       height: MediaQuery.of(context).size.height / 4.5,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).secondaryHeaderColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: const [
           BoxShadow(

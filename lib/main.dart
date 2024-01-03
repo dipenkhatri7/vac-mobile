@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vac/core/services/instances.dart';
 import 'package:vac/my_app.dart';
+import 'package:vac/providers/userProvider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await init();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => UserProvider(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
